@@ -32,7 +32,7 @@ const postDiscoveredPokemon = async (formData) => {
       }
     };
 
-    const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', config);
+    const response = await fetch('https://formspree.io/f/xpqyjolo', config);
 
     if (!response.ok) {
       throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
@@ -46,4 +46,3 @@ const postDiscoveredPokemon = async (formData) => {
 };
 
 export { getRandomPokemon, postDiscoveredPokemon };
-export { getRandomPokemon };
