@@ -21,4 +21,29 @@ const getRandomPokemon = async () => {
     }
 };
 
+const postDiscoveredPokemon = async (formData) => {
+  try {
+    const config = {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    };
+
+    const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', config);
+
+    if (!response.ok) {
+      throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error };
+  }
+};
+
+export { getRandomPokemon, postDiscoveredPokemon };
 export { getRandomPokemon };
