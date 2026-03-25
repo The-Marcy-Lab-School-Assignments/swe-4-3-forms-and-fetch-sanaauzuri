@@ -1,3 +1,4 @@
+//fetch-helpers.js
 const getRandomPokemon = async () => {
   try {
     const randomId = Math.floor(Math.random() * 150) + 1;

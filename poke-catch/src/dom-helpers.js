@@ -1,3 +1,4 @@
+//dom-helpers.js
 const renderPokemon = (pokemonObj) => {
   const li = document.createElement('li');
   const name = document.createElement('h3');

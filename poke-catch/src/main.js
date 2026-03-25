@@ -1,3 +1,4 @@
+//main.js
 import { getRandomPokemon, postDiscoveredPokemon } from './fetch-helpers.js';
 import { renderPokemon, renderError, renderSuccess } from './dom-helpers.js';
 
