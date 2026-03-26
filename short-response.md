@@ -51,6 +51,8 @@ const data = await response.json();
 
 **Your Answer:**
 
+We check `response.ok` because we don't want to start reading the body/data if there was an error.  This catches server errors that `.catch()` alone would miss.
+
 
 
 ## Question 4: Async/Await Conversion
