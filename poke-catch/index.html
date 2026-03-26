@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokéCatch</title>
+</head>
+<body>
+  <h1>Pokemon!</h1>
+  <p id="success"></p>
+  <p id="error"></p>
+
+  <form id="capture-form">
+    <h2>Capture Pokemon</h2>
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" />
+    </div>
+    <div>
+      <label for="types">Types</label>
+      <input type="text" id="types" name="types" />
+    </div>
+    <div>
+      <label for="isFavorite">Favorite</label>
+      <input type="checkbox" id="isFavorite" name="isFavorite" />
+    </div>
+    <button type="submit">Capture</button>
+  </form>
+
+  <h2>Discovered Pokemon</h2>
+  <button id="discover-button">Find New Pokemon</button>
+  <ul id="discovered-list"></ul>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

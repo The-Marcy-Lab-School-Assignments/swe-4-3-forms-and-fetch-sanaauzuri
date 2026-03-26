@@ -18,12 +18,26 @@ fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
 
 **Your Answer:**
 
+```js
+fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+  .then((response) => {
+    if (!response.ok) throw Error(`Fetch failed.`)
+    const readingPromise = response.json()
+    return readingPromise; // return was missing
+  })
+  .then((data) => {
+    console.log(data)
+  })
+  .catch((error) => console.error(error.message))
+```
 
 ## Question 2: Development Servers and CORS
 
 A student opens their `index.html` file directly in the browser (using the `file://` protocol). Their `<script type="module">` tag and `fetch()` call both fail. Explain why, and what they should do instead.
 
 **Your Answer:**
+
+Their `<script type="module">` tag and `fetch()` call both fail because browsers block module loading and `fetch()` calls due to **CORS** restrictions. Browsers don’t allow module loading over the `file://` protocol, the browser treats it as origin `null` and blocks loading other files because of **CORS**.   The student should instead use a development server like **Vite** so the page is served over `http://`, which allows both modules and fetch to work properly.
 
 
 ## Question 3: The `fetch` Response Object
@@ -36,6 +50,8 @@ const data = await response.json();
 ```
 
 **Your Answer:**
+
+We check `response.ok` because we don't want to start reading the body/data if there was an error.  This catches server errors that `.catch()` alone would miss.
 
 
 
@@ -60,7 +76,21 @@ const getJoke = () => {
 ```
 
 **Your Answer:**
+```js
+const getJoke = async () => {
+  try {
+    const response = await fetch('https://v2.jokeapi.dev/joke/Programming?type=twopart')
 
+    if (!response.ok) {
+      throw Error(`Fetch failed. ${response.status}`)}
+
+    const data = await response.json()
+    return { data, error: null }
+  } catch (error) {
+    return { data: null, error }
+  }
+}
+```
 
 
 ## Question 5: `event.preventDefault()` and Form Handling
@@ -78,7 +108,27 @@ What is wrong? What happens when they click submit, and how do they fix it?
 
 **Your Answer:**
 
+The incorrect code:
+```js
+form.addEventListener('submit', (event) => {
+  /*
+  - Missing event.preventDefault()
+  - This stops the browser from doing its default action (reload/redirect)
+  - So the page reloads and the code never runs
+  */
+  const name = form.elements.name.value;
+  document.querySelector('#output').textContent = name;
+});
+```
+The correct code:
+```js
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); // Add this to stop the page from reloading so their code can run
 
+  const name = form.elements.name.value;
+  document.querySelector('#output').textContent = name;
+});
+```
 
 ## Question 6: Putting It All Together
 
@@ -97,3 +147,4 @@ The steps below describe how to build a form that fetches Pokemon data from `htt
 
 **Your Answer:**
 
+J, E, B, G, H, C, A, F, D, I
